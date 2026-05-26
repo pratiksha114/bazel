@@ -273,8 +273,8 @@ EOF
   cat bazel-bin/java/javabin >& $TEST_log
   expect_log "JAVABIN=.*/zoo/bin/java"
 
-  # Check that we use local_jdk when it's not specified.
-  bazel build //java:javabin
+  # Check that we use local_jdk when requested.
+  bazel build --java_runtime_version=local_jdk //java:javabin
   cat bazel-bin/java/javabin >& $TEST_log
   expect_log "JAVABIN=.*/rules_java+.*+toolchains+local_jdk/bin/java"
 }
